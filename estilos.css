@@ -1,0 +1,23 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', monospace;
+}
+
+.titulo-juego {
+    color: #00ff99;
+    letter-spacing: 6px;
+}
+
+.btn-arcade {
+    background: transparent;
+    color: #00ff99;
+    border: 2px solid #00ff99;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.btn-arcade:hover {
+    background: #00ff99;
+    color: black;
+}
