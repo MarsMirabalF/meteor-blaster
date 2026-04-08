@@ -3,7 +3,9 @@ Proyecto para programacion web, sobre un juego de de asteroides retro basado en 
 
 A continuacion se listaran sitios web de referencia:
 
-Siyio web parecido a W3 schools pero para la API de canvas: 
+SITIOS WEB:
+
+Sitio web parecido a W3 schools pero para la API de canvas: 
 https://developer.mozilla.org/es/docs/Web/API/Canvas_API/Tutorial
     -Se uso para averiguar funciones especificas como : canvas.getContext("2d");
 
@@ -19,6 +21,24 @@ Sitio web para aprender de animacion y el bucle del juego:
 https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
     -Se uso para requestAnimationFrame(juegoEnCurso);
 
-Tutorial de como hacer el juego Space Invaders:
+Sitio web de donde se uso para aprender de rotaciones, translaciones y transformaciones:
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations
+    -Se uso la siguiente formula matematica para generar poligonos irregulares: 
+    distancia = radio * (0.7 + Math.random() * 0.3) 
+    -Implementado tanto para los asteroides como para la nave: ctx.translate(ast.x, ast.y);
+
+
+
+TUTORIALES DE YOUTUBE:
+
+Tutorial de como hacer el juego Space Invaders para dibujar la nave y ahora el movimiento con las teclas:
 https://youtu.be/v74X5dtDLvg?si=ofvZAOHHB9Zcrko2
-    -De aqui por ahora se uso para dibujar la nave y ahora el movimiento con las teclas.
+
+Tutorial para entender que estamos haciendo:
+https://www.youtube.com/watch?v=NYeLT2IoJ5k&t=964s
+
+Tutorial para crear la nave si bien no se uso completamente el tutorial de aqui, si se aprende conceptos muy interesantes hacer del uso de ctx:
+https://www.youtube.com/watch?v=pTzeBsHQeo0&t=990s
+
+Tutorial de como hacer el juego de asteroides para el movimiento de la nave y los asteroides:
+https://www.youtube.com/watch?v=ChkCQ6fCGoY
