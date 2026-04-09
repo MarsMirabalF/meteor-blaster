@@ -1,5 +1,7 @@
 const canvas = document.getElementById("canvasJuego");
 const ctx = canvas.getContext("2d");
+const simboloNave = new Image();
+simboloNave.src = "icons/acbf.png";
 
 canvas.width = 1500;
 canvas.height = 550;
@@ -7,8 +9,8 @@ canvas.height = 550;
 const nave = {
     x: canvas.width / 2,
     y: canvas.height / 2,
-    tamanio: 20,
-    color: "#befffb",
+    tamanio: 25,
+    color: "#000000",
     angulo: 0,
     velocidadX: 0,
     velocidadY: 0
@@ -132,6 +134,9 @@ function dibujarAsteroides() {
         }
         ctx.closePath();
 
+        ctx.fillStyle = "#a0a0c0";
+        ctx.fill();
+
         ctx.strokeStyle = "#a0a0c0";
         ctx.lineWidth = 2;
         ctx.stroke();
@@ -144,15 +149,59 @@ function dibujarNave(x, y, tamanio, angulo) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(angulo);
+
+    ctx.strokeStyle = "#D4AF37";
+    ctx.lineWidth = 2;
+
+    ctx.shadowColor = "#D4AF37";
+    ctx.shadowBlur = 15;
+
     ctx.beginPath();
     ctx.moveTo(0, -tamanio);
-    ctx.lineTo(tamanio * 0.8, tamanio);
+    ctx.lineTo(tamanio * 1.2, tamanio);
     ctx.lineTo(0, tamanio * 0.5);
-    ctx.lineTo(-tamanio * 0.8, tamanio);
+    ctx.lineTo(-tamanio * 1.2, tamanio);
     ctx.closePath();
-    ctx.strokeStyle = nave.color;
-    ctx.lineWidth = 2;
+    ctx.fillStyle = nave.color;
+    ctx.fill();
     ctx.stroke();
+
+    if (simboloNave.complete) {
+        ctx.shadowColor = "#D4AF37";
+        ctx.shadowBlur = 100;
+        ctx.drawImage(
+            simboloNave,
+            -tamanio * 0.5,
+            -tamanio * 0.6,
+            tamanio * 1.0,
+            tamanio * 1.0
+        );
+        ctx.shadowBlur = 0;
+    }
+
+    if (teclas.w){
+        ctx.beginPath();
+        ctx.strokeStyle = "#ffae00";
+        ctx.lineWidth = 3;
+
+        ctx.moveTo(-tamanio * 0.3, tamanio);
+        ctx.lineTo(0, tamanio + Math.random() * 20 + 10);
+        ctx.lineTo(tamanio * 0.3, tamanio);
+
+        ctx.stroke();
+    }
+
+    if (teclas.s){
+        ctx.beginPath();
+        ctx.strokeStyle = "#ffae00";
+        ctx.lineWidth = 2;
+
+        ctx.moveTo(-tamanio * 0.3, -tamanio * 0.5);
+        ctx.lineTo(0, -tamanio - (Math.random() * 10 + 5));
+        ctx.lineTo(tamanio * 0.3, -tamanio * 0.5);
+
+        ctx.stroke();
+    }
     ctx.restore();
 }
 

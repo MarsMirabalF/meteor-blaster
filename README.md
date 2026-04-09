@@ -27,6 +27,17 @@ https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformat
     distancia = radio * (0.7 + Math.random() * 0.3) 
     -Implementado tanto para los asteroides como para la nave: ctx.translate(ast.x, ast.y);
 
+Sitio web para dibujar:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+    -Se uso para: beginPath(), moveTo(), lineTo(), fill() vs stroke()
+
+Sitio web para usar imagenes:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
+    -Se uso para: simboloNave
+
+Sitio web de donde saber como usar blur y sombras:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
+    -Se uso para: ctx.shadowBlur y ctx.shadowColor
 
 
 TUTORIALES DE YOUTUBE:
