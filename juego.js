@@ -6,6 +6,11 @@ simboloNave.src = "icons/acbf.png";
 canvas.width = 1500;
 canvas.height = 550;
 
+let vidas = 3;
+let invencible = false;
+let tiempoInvencible = 0;
+const DURACION_INVENCIBLE = 180;
+
 const nave = {
     x: canvas.width / 2,
     y: canvas.height / 2,
@@ -69,6 +74,13 @@ function actualizar() {
     if (nave.y < 0){ 
         nave.y = canvas.height; 
     }
+
+    if (invencible) {
+        tiempoInvencible--;
+    if (tiempoInvencible <= 0) {
+        invencible = false;
+        }
+    }
 }
 
 const CANTIDAD_ASTEROIDES = 8;
@@ -93,7 +105,6 @@ function crearAsteroide() {
             y: Math.sin(angulo) * distancia
         });
     }
-
     return { x, y, radio, velocidadX, velocidadY, vertices };
 }
 
@@ -118,6 +129,29 @@ function actualizarAsteroides() {
         }
         if (ast.y < -ast.radio){         
             ast.y = canvas.height + ast.radio;
+        }
+    }
+}
+
+function verificarColisiones() {
+    if (invencible) {
+        return;
+    }
+
+    for (const ast of asteroides) {
+        const dx = nave.x - ast.x;
+        const dy = nave.y - ast.y;
+        const distancia = Math.sqrt(dx * dx + dy * dy);
+        const radioColision = ast.radio * 0.85; // un poco menor que el radio visual
+
+        if (distancia < nave.tamanio + radioColision) {
+            vidas--;
+            if (vidas <= 0) {
+                gameOver();
+            } else {
+                respawnNave();
+            }
+            break;
         }
     }
 }

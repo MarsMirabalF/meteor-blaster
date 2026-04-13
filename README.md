@@ -53,3 +53,6 @@ https://www.youtube.com/watch?v=pTzeBsHQeo0&t=990s
 
 Tutorial de como hacer el juego de asteroides para el movimiento de la nave y los asteroides:
 https://www.youtube.com/watch?v=ChkCQ6fCGoY
+
+Tutorial de como hacer el juego de asteroides la parte de las colisiones y creaar los asteroides:
+https://youtu.be/ayT3uRUmhLk?si=Y0zfu07Dc-L0rkAR
