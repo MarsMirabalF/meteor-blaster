@@ -40,6 +40,16 @@ document.addEventListener("keyup", (e) => {
     }
 });
 
+function respawnNave() {
+    nave.x = canvas.width / 2;
+    nave.y = canvas.height / 2;
+    nave.velocidadX = 0;
+    nave.velocidadY = 0;
+    nave.angulo = 0;
+    invencible = true;
+    tiempoInvencible = DURACION_INVENCIBLE;
+}
+
 function actualizar() {
     if (teclas.a) {
         nave.angulo -= 0.05;
@@ -133,16 +143,31 @@ function actualizarAsteroides() {
     }
 }
 
+function gameOver() {
+    vidas = 0;
+    ctx.fillStyle = "#000a27";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#ff4444";
+    ctx.font = "bold 64px 'Courier New'";
+    ctx.textAlign = "center";
+    ctx.fillText("Perdiste... :c", canvas.width / 2, canvas.height / 2);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "24px 'Courier New'";
+    ctx.fillText("Recarga la página para reiniciar", canvas.width / 2, canvas.height / 2 + 60);
+}
+
+
 function verificarColisiones() {
     if (invencible) {
         return;
     }
-
     for (const ast of asteroides) {
         const dx = nave.x - ast.x;
         const dy = nave.y - ast.y;
         const distancia = Math.sqrt(dx * dx + dy * dy);
-        const radioColision = ast.radio * 0.85; // un poco menor que el radio visual
+        const radioColision = ast.radio * 0.85;
 
         if (distancia < nave.tamanio + radioColision) {
             vidas--;
@@ -154,6 +179,40 @@ function verificarColisiones() {
             break;
         }
     }
+}
+
+function dibujarVidas() {
+    const iconoTamanio = 16;
+    const margen = 20;
+    const separacion = 50;
+
+    ctx.save();
+    ctx.shadowColor = "#D4AF37";
+    ctx.shadowBlur = 10;
+
+    for (let i = 0; i < 3; i++) {
+        const x = margen + i * separacion + iconoTamanio;
+        const y = margen + iconoTamanio;
+        const opacidad = i < vidas ? 1.0 : 0.2;
+
+        ctx.globalAlpha = opacidad;
+        ctx.strokeStyle = "#D4AF37";
+        ctx.lineWidth = 1.5;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.beginPath();
+        ctx.moveTo(0, -iconoTamanio);
+        ctx.lineTo(iconoTamanio * 1.2, iconoTamanio);
+        ctx.lineTo(0, iconoTamanio * 0.5);
+        ctx.lineTo(-iconoTamanio * 1.2, iconoTamanio);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    ctx.globalAlpha = 1.0;
+    ctx.restore();
 }
 
 function dibujarAsteroides() {
@@ -240,6 +299,10 @@ function dibujarNave(x, y, tamanio, angulo) {
 }
 
 function juegoEnCurso() {
+    if (vidas <= 0) {
+        return;
+    }
+
     ctx.fillStyle = "#000a27";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -247,9 +310,13 @@ function juegoEnCurso() {
 
     actualizarAsteroides();
 
+    verificarColisiones();
+
     dibujarNave(nave.x, nave.y, nave.tamanio, nave.angulo);
 
     dibujarAsteroides();
+    
+    dibujarVidas();
 
     requestAnimationFrame(juegoEnCurso);
 }

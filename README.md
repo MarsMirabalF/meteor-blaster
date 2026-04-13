@@ -39,6 +39,14 @@ Sitio web de donde saber como usar blur y sombras:
 https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
     -Se uso para: ctx.shadowBlur y ctx.shadowColor
 
+Sitio para ver las coliciones:
+https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+    -Se uso para Circle collision detection
+
+Sitio para ver las coliciones:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalAlpha
+    -Se uso para determinar el globalAlpha
+
 
 TUTORIALES DE YOUTUBE:
 
