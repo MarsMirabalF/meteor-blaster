@@ -181,38 +181,16 @@ function verificarColisiones() {
     }
 }
 
-function dibujarVidas() {
-    const iconoTamanio = 16;
-    const margen = 20;
-    const separacion = 50;
-
-    ctx.save();
-    ctx.shadowColor = "#D4AF37";
-    ctx.shadowBlur = 10;
+function inicializarVidas() {
+    const contenedor = document.getElementById("contenedorVidas");
+    contenedor.innerHTML = "";
 
     for (let i = 0; i < 3; i++) {
-        const x = margen + i * separacion + iconoTamanio;
-        const y = margen + iconoTamanio;
-        const opacidad = i < vidas ? 1.0 : 0.2;
-
-        ctx.globalAlpha = opacidad;
-        ctx.strokeStyle = "#D4AF37";
-        ctx.lineWidth = 1.5;
-
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.beginPath();
-        ctx.moveTo(0, -iconoTamanio);
-        ctx.lineTo(iconoTamanio * 1.2, iconoTamanio);
-        ctx.lineTo(0, iconoTamanio * 0.5);
-        ctx.lineTo(-iconoTamanio * 1.2, iconoTamanio);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.restore();
+        const img = document.createElement("img");
+        img.src = "icons/vida.png";
+        img.id = `vida-${i}`;
+        contenedor.appendChild(img);
     }
-
-    ctx.globalAlpha = 1.0;
-    ctx.restore();
 }
 
 function dibujarAsteroides() {
@@ -316,7 +294,7 @@ function juegoEnCurso() {
 
     dibujarAsteroides();
     
-    dibujarVidas();
+    inicializarVidas();
 
     requestAnimationFrame(juegoEnCurso);
 }

@@ -34,6 +34,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 Sitio web para usar imagenes:
 https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
     -Se uso para: simboloNave
+    -Se uso para colocar la vida como imagen en el html dandole estilo en el css. Y la imagen se carga desde Juego.js
 
 Sitio web de donde saber como usar blur y sombras:
 https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
