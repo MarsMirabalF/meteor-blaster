@@ -100,6 +100,11 @@ function crearAsteroide() {
 
     const x = Math.random() * canvas.width;
     const y = Math.random() * canvas.height;
+    
+    while(nave.x == x && nave.y == y){
+       x = Math.random() * canvas.width; 
+       y = Math.random() * canvas.height;
+    }
 
     const velocidadX = (Math.random() - 0.5) * 1.5;
     const velocidadY = (Math.random() - 0.5) * 1.5;
@@ -190,6 +195,17 @@ function inicializarVidas() {
         img.src = "icons/vida.png";
         img.id = `vida-${i}`;
         contenedor.appendChild(img);
+    }
+}
+
+function actualizarVidasHTML() {
+    for (let i = 0; i < 3; i++) {
+        const img = document.getElementById(`vida-${i}`);
+        if (i < vidas) {
+            img.classList.remove("perdida");
+        } else {
+            img.classList.add("perdida");
+        }
     }
 }
 
@@ -295,6 +311,8 @@ function juegoEnCurso() {
     dibujarAsteroides();
     
     inicializarVidas();
+
+    actualizarVidasHTML();
 
     requestAnimationFrame(juegoEnCurso);
 }
