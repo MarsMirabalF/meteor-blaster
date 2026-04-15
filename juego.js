@@ -156,7 +156,7 @@ function gameOver() {
     ctx.fillStyle = "#ff4444";
     ctx.font = "bold 64px 'Courier New'";
     ctx.textAlign = "center";
-    ctx.fillText("Perdiste... :c", canvas.width / 2, canvas.height / 2);
+    ctx.fillText("Perdiste... :(", canvas.width / 2, canvas.height / 2);
 
     ctx.fillStyle = "#ffffff";
     ctx.font = "24px 'Courier New'";
@@ -292,6 +292,8 @@ function dibujarNave(x, y, tamanio, angulo) {
     ctx.restore();
 }
 
+inicializarVidas();
+
 function juegoEnCurso() {
     if (vidas <= 0) {
         return;
@@ -309,8 +311,6 @@ function juegoEnCurso() {
     dibujarNave(nave.x, nave.y, nave.tamanio, nave.angulo);
 
     dibujarAsteroides();
-    
-    inicializarVidas();
 
     actualizarVidasHTML();
 
