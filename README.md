@@ -49,6 +49,17 @@ Sitio para ver las coliciones:
 https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalAlpha
     -Se uso para determinar el globalAlpha
 
+Sitio para dibujos con arco en canvas:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc
+    -arc() - Para dibujar balas circulares
+
+Sitio para rellenar las figuras en canva:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill
+    -fill() - Para rellenar las balas con color
+
+Sitio para saber como trazar un camino o linea de dibujo:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
+    -beginPath() - Para iniciar el trazado de cada bala
 
 TUTORIALES DE YOUTUBE:
 
@@ -66,3 +77,6 @@ https://www.youtube.com/watch?v=ChkCQ6fCGoY
 
 Tutorial de como hacer el juego de asteroides la parte de las colisiones y creaar los asteroides:
 https://youtu.be/ayT3uRUmhLk?si=Y0zfu07Dc-L0rkAR
+
+Tutorial de como hacer el juego de asteroides la parte de los disparos:
+https://www.youtube.com/watch?v=PIKm4rWqpdw&list=PL4cUxeGkcC9iO8ai6LU0s6aHAaWP4RAkF&index=6

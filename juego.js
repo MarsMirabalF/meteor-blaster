@@ -21,16 +21,26 @@ const nave = {
     velocidadY: 0
 };
 
+const balas = [];
+const VELOCIDAD_BALA = 5;
+const VIDA_BALA = 300;
+let cooldownDisparo = 0;
+const COOLDOWN_DISPARO = 15;
+
 const teclas = {
     a: false,
     d: false,
     w: false,
-    s: false
+    s: false,
+    " ": false
 };
 
 document.addEventListener("keydown", (e) => {
     if (e.key in teclas){
-        teclas[e.key] = true
+        teclas[e.key] = true;
+    };
+    if (e.key == " "){
+        e.preventDefault();
     };
 });
 
@@ -91,13 +101,57 @@ function actualizar() {
         invencible = false;
         }
     }
+
+    if (cooldownDisparo > 0){ 
+        cooldownDisparo--; 
+    }
+
+    if (teclas[" "] && cooldownDisparo === 0) {
+        balas.push({
+            x: nave.x + Math.sin(nave.angulo) * nave.tamanio,
+            y: nave.y - Math.cos(nave.angulo) * nave.tamanio,
+            velocidadX: Math.sin(nave.angulo) * VELOCIDAD_BALA + nave.velocidadX,
+            velocidadY: -Math.cos(nave.angulo) * VELOCIDAD_BALA + nave.velocidadY,
+            vida: VIDA_BALA
+        });
+        cooldownDisparo = COOLDOWN_DISPARO;
+    }
+
+}
+
+function actualizarBalas() {
+    for (let i = balas.length - 1; i >= 0; i--) {
+        balas[i].x += balas[i].velocidadX;
+        balas[i].y += balas[i].velocidadY;
+        balas[i].vida--;
+
+        if (
+            balas[i].vida <= 0 ||
+            balas[i].x < 0 || balas[i].x > canvas.width ||
+            balas[i].y < 0 || balas[i].y > canvas.height
+        ) {
+            balas.splice(i, 1);
+        }
+    }
+}
+
+function dibujarBalas() {
+    for (const bala of balas) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(bala.x, bala.y, 7, 0, Math.PI * 2);
+        ctx.fillStyle = "#00d5ff";
+        ctx.shadowColor = "#ffffff";
+        ctx.shadowBlur = 30;
+        ctx.fill();Feat
+        ctx.restore();
+    }
 }
 
 const CANTIDAD_ASTEROIDES = 8;
 
 function crearAsteroide() {
     const radio = 20 + Math.random() * 30;
-
     const x = Math.random() * canvas.width;
     const y = Math.random() * canvas.height;
     
@@ -306,13 +360,17 @@ function juegoEnCurso() {
 
     actualizarAsteroides();
 
+    actualizarBalas();
+
     verificarColisiones();
+
+    actualizarVidasHTML();
 
     dibujarNave(nave.x, nave.y, nave.tamanio, nave.angulo);
 
     dibujarAsteroides();
 
-    actualizarVidasHTML();
+    dibujarBalas();
 
     requestAnimationFrame(juegoEnCurso);
 }
