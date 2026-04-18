@@ -78,5 +78,5 @@ https://www.youtube.com/watch?v=ChkCQ6fCGoY
 Tutorial de como hacer el juego de asteroides la parte de las colisiones y creaar los asteroides:
 https://youtu.be/ayT3uRUmhLk?si=Y0zfu07Dc-L0rkAR
 
-Tutorial de como hacer el juego de asteroides la parte de los disparos:
+Tutorial de como hacer el juego de asteroides la parte de los disparos y efecto de colisiones para las balas:
 https://www.youtube.com/watch?v=PIKm4rWqpdw&list=PL4cUxeGkcC9iO8ai6LU0s6aHAaWP4RAkF&index=6
