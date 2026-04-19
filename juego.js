@@ -22,6 +22,7 @@ const nave = {
 };
 
 const balas = [];
+const explosiones = [];
 const VELOCIDAD_BALA = 5;
 const VIDA_BALA = 300;
 let cooldownDisparo = 0;
@@ -197,6 +198,50 @@ function actualizarAsteroides() {
     }
 }
 
+function crearExplosion(x, y) {
+    const particulas = [];
+    const cantidad = 8;
+    for (let i = 0; i < cantidad; i++) {
+        const angulo = (i / cantidad) * Math.PI * 2;
+        const velocidad = 1 + Math.random() * 2;
+        particulas.push({
+            x, y,
+            velocidadX: Math.cos(angulo) * velocidad,
+            velocidadY: Math.sin(angulo) * velocidad,
+            vida: 1.0
+        });
+    }
+    explosiones.push({ particulas });
+}
+
+function actualizarYDibujarExplosiones() {
+    for (let i = explosiones.length - 1; i >= 0; i--) {
+        const exp = explosiones[i];
+        let vivas = false;
+
+        for (const p of exp.particulas) {
+            p.x += p.velocidadX;
+            p.y += p.velocidadY;
+            p.vida -= 0.04;
+
+            if (p.vida > 0) {
+                vivas = true;
+                ctx.save();
+                ctx.globalAlpha = p.vida;
+                ctx.fillStyle = "#ffae00";
+                ctx.shadowColor = "#ff0000";
+                ctx.shadowBlur = 100;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        if (!vivas) explosiones.splice(i, 1);
+    }
+}
+
 function gameOver() {
     vidas = 0;
     ctx.fillStyle = "#000a27";
@@ -265,6 +310,7 @@ function verificarColisionesBalas() {
                     ));
                 }
 
+                crearExplosion(ast.x, ast.y);
                 asteroides.splice(j, 1);
                 balas.splice(i, 1);
 
@@ -406,6 +452,8 @@ function juegoEnCurso() {
     actualizar();
 
     actualizarAsteroides();
+
+    actualizarYDibujarExplosiones();
 
     actualizarBalas();
 

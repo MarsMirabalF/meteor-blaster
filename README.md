@@ -61,6 +61,31 @@ Sitio para saber como trazar un camino o linea de dibujo:
 https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
     -beginPath() - Para iniciar el trazado de cada bala
 
+Sitio para guardar el estado del canvas:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save
+    - save() - Para guardar el estado antes de cambiar globalAlpha
+
+Sitio para restaurar el estado del canvas:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/restore
+    - restore() - Para restaurar el estado después de dibujar cada partícula
+  
+Sitio para funciones trigonométricas en JavaScript:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cos
+    - Math.cos() - Para calcular la dirección X de cada partícula según su ángulo
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin
+    - Math.sin() - Para calcular la dirección Y de cada partícula según su ángulo
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI
+    - Math.PI - Para distribuir las partículas en 360 grados (Math.PI * 2)
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    - Math.random() - Para variar la velocidad de cada partícula aleatoriamente
+
+Sitio para el método splice en arrays:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    - splice() - Para eliminar explosiones y partículas que ya terminaron su ciclo de vida
+
 TUTORIALES DE YOUTUBE:
 
 Tutorial de como hacer el juego Space Invaders para dibujar la nave y ahora el movimiento con las teclas:
@@ -80,3 +105,6 @@ https://youtu.be/ayT3uRUmhLk?si=Y0zfu07Dc-L0rkAR
 
 Tutorial de como hacer el juego de asteroides la parte de los disparos y efecto de colisiones para las balas:
 https://www.youtube.com/watch?v=PIKm4rWqpdw&list=PL4cUxeGkcC9iO8ai6LU0s6aHAaWP4RAkF&index=6
+
+Tutorial de como hacer la parte de gameover para el juego:
+https://www.youtube.com/watch?v=9jxkWxCHuq0&list=PL4cUxeGkcC9iO8ai6LU0s6aHAaWP4RAkF&index=8
