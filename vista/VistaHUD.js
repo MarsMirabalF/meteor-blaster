@@ -4,7 +4,7 @@ function inicializarVidas() {
 
     for (let i = 0; i < 3; i++) {
         const img = document.createElement("img");
-        img.src = "icons/vida.png";
+        img.src = "vista/icons/vida.png";
         img.id = `vida-${i}`;
         contenedor.appendChild(img);
     }

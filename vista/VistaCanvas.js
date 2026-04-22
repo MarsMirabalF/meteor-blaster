@@ -1,7 +1,7 @@
 const canvas = document.getElementById("canvasJuego");
 const ctx = canvas.getContext("2d");
 const simboloNave = new Image();
-simboloNave.src = "icons/acbf.png";
+simboloNave.src = "vista/icons/acbf.png";
 
 canvas.width = 1500;
 canvas.height = 550;
