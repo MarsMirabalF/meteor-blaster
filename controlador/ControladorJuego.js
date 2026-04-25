@@ -3,112 +3,126 @@ let invencible = false;
 let tiempoInvencible = 0;
 const DURACION_INVENCIBLE = 180;
 
-function respawnNave() {
-    nave.x = canvas.width / 2;
-    nave.y = canvas.height / 2;
-    nave.velocidadX = 0;
-    nave.velocidadY = 0;
-    nave.angulo = 0;
-    invencible = true;
-    tiempoInvencible = DURACION_INVENCIBLE;
+function respawnNave( ) {
+     Bombardini.x = pantallaJ.width / 2;
+     Bombardini.y = pantallaJ.height / 2;
+      Bombardini.velocidadX = 0;
+      Bombardini.velocidadY = 0;
+      Bombardini.angulo = 0;
+        invencible = true;
+        tiempoInvencible = DURACION_INVENCIBLE;
 }
 
-function gameOver() {
+function perdisteJAJAJA(){
     vidas = 0;
-    dibujarGameOver();
+      pantallaDalasxd();
 }
 
-function actualizar() {
-    if (teclas.a) {
-        nave.angulo -= 0.05;
+function actualizar(){
+    if (controlesGamerXD.a){
+      Bombardini.angulo -= 0.05;
     }
-    if (teclas.d) {
-        nave.angulo += 0.05;
+    if (controlesGamerXD.d){
+      Bombardini.angulo += 0.05;
     }
-    if (teclas.w) {
-        nave.velocidadX += Math.sin(nave.angulo) * 0.2;
-        nave.velocidadY -= Math.cos(nave.angulo) * 0.2;
+    if (controlesGamerXD.w) {
+      Bombardini.velocidadX += Math.sin(Bombardini.angulo) * 0.2;
+      Bombardini.velocidadY -= Math.cos(Bombardini.angulo) * 0.2;
     }
-    if (teclas.s) {
-        nave.velocidadX -= Math.sin(nave.angulo) * 0.2;
-        nave.velocidadY += Math.cos(nave.angulo) * 0.2;
+    if (controlesGamerXD.s){
+      Bombardini.velocidadX -= Math.sin(Bombardini.angulo) * 0.2;
+      Bombardini.velocidadY += Math.cos(Bombardini.angulo) * 0.2;
     }
 
-    nave.x += nave.velocidadX;
-    nave.y += nave.velocidadY;
+      Bombardini.x += Bombardini.velocidadX;
+    Bombardini.y+= Bombardini.velocidadY;
 
-    nave.velocidadX *= 0.98;
-    nave.velocidadY *= 0.98;
+       Bombardini.velocidadX *= 0.98;
+    Bombardini.velocidadY *= 0.98;
 
-    if (nave.x > canvas.width) { nave.x = 0; }
-    if (nave.x < 0) { nave.x = canvas.width; }
-    if (nave.y > canvas.height) { nave.y = 0; }
-    if (nave.y < 0) { nave.y = canvas.height; }
+    if (Bombardini.x > pantallaJ.width){
+         Bombardini.x = 0; 
+        }
+    if (Bombardini.x < 0) {
+         Bombardini.x = pantallaJ.width; 
+        }
+    if (Bombardini.y > pantallaJ.height) {
+         Bombardini.y = 0; 
+        }
+    if (Bombardini.y < 0) {
+         Bombardini.y = pantallaJ.height; }
 
     if (invencible) {
-        tiempoInvencible--;
+      tiempoInvencible--;
         if (tiempoInvencible <= 0) {
-            invencible = false;
+          invencible = false;
         }
     }
 
-    if (cooldownDisparo > 0) {
+    if(cooldownDisparo>0){
         cooldownDisparo--;
     }
 
-    if (teclas[" "] && cooldownDisparo === 0) {
+    if(controlesGamerXD[" "]&&cooldownDisparo === 0){
         balas.push({
-            x: nave.x + Math.sin(nave.angulo) * nave.tamanio,
-            y: nave.y - Math.cos(nave.angulo) * nave.tamanio,
-            velocidadX: Math.sin(nave.angulo) * VELOCIDAD_BALA + nave.velocidadX,
-            velocidadY: -Math.cos(nave.angulo) * VELOCIDAD_BALA + nave.velocidadY,
+          x: Bombardini.x +Math.sin(Bombardini.angulo)*Bombardini.tamanio,
+          y: Bombardini.y- Math.cos(Bombardini.angulo)*Bombardini.tamanio,
+          velocidadX: Math.sin(Bombardini.angulo) *VELOCIDAD_BALA + Bombardini.velocidadX,
+            velocidadY: -Math.cos(Bombardini.angulo) *VELOCIDAD_BALA + Bombardini.velocidadY,
             vida: VIDA_BALA
         });
-        cooldownDisparo = COOLDOWN_DISPARO;
+          cooldownDisparo = COOLDOWN_DISPARO;
     }
 }
 
 function actualizarBalas() {
-    for (let i = balas.length - 1; i >= 0; i--) {
-        balas[i].x += balas[i].velocidadX;
-        balas[i].y += balas[i].velocidadY;
+    for (let i=balas.length-1; i>=0; i--) {
+        balas[i].x+=balas[i].velocidadX;
+        balas[i].y +=balas[i].velocidadY;
         balas[i].vida--;
-
         if (
-            balas[i].vida <= 0 ||
-            balas[i].x < 0 || balas[i].x > canvas.width ||
-            balas[i].y < 0 || balas[i].y > canvas.height
+          balas[i].vida<=0||
+           balas[i].x < 0|| balas[i].x > pantallaJ.width ||
+            balas[i].y < 0||balas[i].y > pantallaJ.height
         ) {
-            balas.splice(i, 1);
+             balas.splice(i, 1);
         }
     }
 }
 
-function actualizarAsteroides() {
-    for (const ast of asteroides) {
-        ast.x += ast.velocidadX;
-        ast.y += ast.velocidadY;
+function actualizarAsteroides( ){
+    for (const ast of asteroides){
+        ast.x+=ast.velocidadX;
+        ast.y+= ast.velocidadY ;
 
-        if (ast.x > canvas.width + ast.radio) { ast.x = -ast.radio; }
-        if (ast.x < -ast.radio) { ast.x = canvas.width + ast.radio; }
-        if (ast.y > canvas.height + ast.radio) { ast.y = -ast.radio; }
-        if (ast.y < -ast.radio) { ast.y = canvas.height + ast.radio; }
+        if (ast.x > pantallaJ.width + ast.radio) { 
+              ast.x = -ast.radio; 
+        }
+        if (ast.x < -ast.radio) { 
+             ast.x = pantallaJ.width + ast.radio; 
+        }
+        if (ast.y > pantallaJ.height + ast.radio) { 
+              ast.y = -ast.radio; 
+        }
+        if (ast.y < -ast.radio) { 
+             ast.y = pantallaJ.height + ast.radio; 
+        }
     }
 }
 
-function iniciarJuego() {
-    nave.x = canvas.width / 2;
-    nave.y = canvas.height / 2;
+function iniciarJuego( ){
+    Bombardini.x = pantallaJ.width /2;
+    Bombardini.y= pantallaJ.height/ 2;
 
-    for (let i = 0; i < CANTIDAD_ASTEROIDES; i++) {
+    for (let i=0; i<CANTIDAD_ASTEROIDES; i++) {
         asteroides.push(crearAsteroide());
     }
 
-    inicializarVidas();
+    crearLifes();
     juegoEnCurso();
 }
 
-function juegoEnCurso() {
+function juegoEnCurso( ){
     if (vidas <= 0) {
         return;
     }
@@ -120,8 +134,8 @@ function juegoEnCurso() {
     actualizarBalas();
     verificarColisiones();
     verificarColisionesBalas();
-    actualizarVidasHTML();
-    dibujarNave(nave.x, nave.y, nave.tamanio, nave.angulo);
+    vidasResponsiveMorir();
+    dibujarNave(Bombardini.x, Bombardini.y, Bombardini.tamanio, Bombardini.angulo);
     dibujarAsteroides();
     dibujarBalas();
 

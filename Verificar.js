@@ -1,19 +1,19 @@
-const canvas = document.getElementById("canvasJuego");
-const ctx = canvas.getContext("2d");
+const pantallaJ = document.getElementById("canvasJuego");
+const ctx = pantallaJ.getContext("2d");
 const simboloNave = new Image();
-simboloNave.src = "icons/acbf.png";
+simboloNave.src = "imagencitas/acbf.png";
 
-canvas.width = 1500;
-canvas.height = 550;
+pantallaJ.width = 1500;
+pantallaJ.height = 550;
 
 let vidas = 3;
 let invencible = false;
 let tiempoInvencible = 0;
 const DURACION_INVENCIBLE = 180;
 
-const nave = {
-    x: canvas.width / 2,
-    y: canvas.height / 2,
+const Bombardini = {
+    x: pantallaJ.width / 2,
+    y: pantallaJ.height / 2,
     tamanio: 25,
     color: "#000000",
     angulo: 0,
@@ -28,7 +28,7 @@ const VIDA_BALA = 300;
 let cooldownDisparo = 0;
 const COOLDOWN_DISPARO = 15;
 
-const teclas = {
+const controlesGamerXD = {
     a: false,
     d: false,
     w: false,
@@ -37,8 +37,8 @@ const teclas = {
 };
 
 document.addEventListener("keydown", (e) => {
-    if (e.key in teclas){
-        teclas[e.key] = true;
+    if (e.key in controlesGamerXD){
+        controlesGamerXD[e.key] = true;
     };
     if (e.key == " "){
         e.preventDefault();
@@ -46,54 +46,54 @@ document.addEventListener("keydown", (e) => {
 });
 
 document.addEventListener("keyup", (e) => {
-    if (e.key in teclas){ 
-        teclas[e.key] = false;
+    if (e.key in controlesGamerXD){ 
+        controlesGamerXD[e.key] = false;
     }
 });
 
 function respawnNave() {
-    nave.x = canvas.width / 2;
-    nave.y = canvas.height / 2;
-    nave.velocidadX = 0;
-    nave.velocidadY = 0;
-    nave.angulo = 0;
+    Bombardini.x = pantallaJ.width / 2;
+    Bombardini.y = pantallaJ.height / 2;
+    Bombardini.velocidadX = 0;
+    Bombardini.velocidadY = 0;
+    Bombardini.angulo = 0;
     invencible = true;
     tiempoInvencible = DURACION_INVENCIBLE;
 }
 
 function actualizar() {
-    if (teclas.a) {
-        nave.angulo -= 0.05;
+    if (controlesGamerXD.a) {
+        Bombardini.angulo -= 0.05;
     }
-    if (teclas.d) {
-        nave.angulo += 0.05;
+    if (controlesGamerXD.d) {
+        Bombardini.angulo += 0.05;
     }
-    if (teclas.w) {
-        nave.velocidadX += Math.sin(nave.angulo) * 0.2;
-        nave.velocidadY -= Math.cos(nave.angulo) * 0.2;
+    if (controlesGamerXD.w) {
+        Bombardini.velocidadX += Math.sin(Bombardini.angulo) * 0.2;
+        Bombardini.velocidadY -= Math.cos(Bombardini.angulo) * 0.2;
     }
-    if (teclas.s) {
-        nave.velocidadX -= Math.sin(nave.angulo) * 0.2;
-        nave.velocidadY += Math.cos(nave.angulo) * 0.2;
+    if (controlesGamerXD.s) {
+        Bombardini.velocidadX -= Math.sin(Bombardini.angulo) * 0.2;
+        Bombardini.velocidadY += Math.cos(Bombardini.angulo) * 0.2;
     }
 
-    nave.x += nave.velocidadX;
-    nave.y += nave.velocidadY;
+    Bombardini.x += Bombardini.velocidadX;
+    Bombardini.y += Bombardini.velocidadY;
 
-    nave.velocidadX *= 0.98;
-    nave.velocidadY *= 0.98;
+    Bombardini.velocidadX *= 0.98;
+    Bombardini.velocidadY *= 0.98;
 
-    if (nave.x > canvas.width){ 
-        nave.x = 0; 
+    if (Bombardini.x > pantallaJ.width){ 
+        Bombardini.x = 0; 
     }
-    if (nave.x < 0){ 
-        nave.x = canvas.width; 
+    if (Bombardini.x < 0){ 
+        Bombardini.x = pantallaJ.width; 
     }
-    if (nave.y > canvas.height){ 
-        nave.y = 0; 
+    if (Bombardini.y > pantallaJ.height){ 
+        Bombardini.y = 0; 
     }
-    if (nave.y < 0){ 
-        nave.y = canvas.height; 
+    if (Bombardini.y < 0){ 
+        Bombardini.y = pantallaJ.height; 
     }
 
     if (invencible) {
@@ -107,12 +107,12 @@ function actualizar() {
         cooldownDisparo--; 
     }
 
-    if (teclas[" "] && cooldownDisparo === 0) {
+    if (controlesGamerXD[" "] && cooldownDisparo === 0) {
         balas.push({
-            x: nave.x + Math.sin(nave.angulo) * nave.tamanio,
-            y: nave.y - Math.cos(nave.angulo) * nave.tamanio,
-            velocidadX: Math.sin(nave.angulo) * VELOCIDAD_BALA + nave.velocidadX,
-            velocidadY: -Math.cos(nave.angulo) * VELOCIDAD_BALA + nave.velocidadY,
+            x: Bombardini.x + Math.sin(Bombardini.angulo) * Bombardini.tamanio,
+            y: Bombardini.y - Math.cos(Bombardini.angulo) * Bombardini.tamanio,
+            velocidadX: Math.sin(Bombardini.angulo) * VELOCIDAD_BALA + Bombardini.velocidadX,
+            velocidadY: -Math.cos(Bombardini.angulo) * VELOCIDAD_BALA + Bombardini.velocidadY,
             vida: VIDA_BALA
         });
         cooldownDisparo = COOLDOWN_DISPARO;
@@ -128,8 +128,8 @@ function actualizarBalas() {
 
         if (
             balas[i].vida <= 0 ||
-            balas[i].x < 0 || balas[i].x > canvas.width ||
-            balas[i].y < 0 || balas[i].y > canvas.height
+            balas[i].x < 0 || balas[i].x > pantallaJ.width ||
+            balas[i].y < 0 || balas[i].y > pantallaJ.height
         ) {
             balas.splice(i, 1);
         }
@@ -153,8 +153,8 @@ const CANTIDAD_ASTEROIDES = 8;
 
 function crearAsteroide(x, y, radio, velocidadX, velocidadY) {
     radio = radio || (45 + Math.random() * 30);
-    x = x !== undefined ? x : Math.random() * canvas.width;
-    y = y !== undefined ? y : Math.random() * canvas.height;
+    x = x !== undefined ? x : Math.random() * pantallaJ.width;
+    y = y !== undefined ? y : Math.random() * pantallaJ.height;
 
     velocidadX = velocidadX !== undefined ? velocidadX : (Math.random() - 0.5) * 1.5;
     velocidadY = velocidadY !== undefined ? velocidadY : (Math.random() - 0.5) * 1.5;
@@ -183,17 +183,17 @@ function actualizarAsteroides() {
         ast.x += ast.velocidadX;
         ast.y += ast.velocidadY;
 
-        if (ast.x > canvas.width + ast.radio){
+        if (ast.x > pantallaJ.width + ast.radio){
             ast.x = -ast.radio;
         }
         if (ast.x < -ast.radio){           
-            ast.x = canvas.width + ast.radio;
+            ast.x = pantallaJ.width + ast.radio;
         }
-        if (ast.y > canvas.height + ast.radio){
+        if (ast.y > pantallaJ.height + ast.radio){
             ast.y = -ast.radio;
         }
         if (ast.y < -ast.radio){         
-            ast.y = canvas.height + ast.radio;
+            ast.y = pantallaJ.height + ast.radio;
         }
     }
 }
@@ -242,19 +242,19 @@ function actualizarYDibujarExplosiones() {
     }
 }
 
-function gameOver() {
+function pantallaDalasxd() {
     vidas = 0;
     ctx.fillStyle = "#000a27";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, pantallaJ.width, pantallaJ.height);
 
     ctx.fillStyle = "#ff4444";
     ctx.font = "bold 64px 'Courier New'";
     ctx.textAlign = "center";
-    ctx.fillText("Perdiste... :(", canvas.width / 2, canvas.height / 2);
+    ctx.fillText("Perdiste... :(", pantallaJ.width / 2, pantallaJ.height / 2);
 
     ctx.fillStyle = "#ffffff";
     ctx.font = "24px 'Courier New'";
-    ctx.fillText("Recarga la página para reiniciar", canvas.width / 2, canvas.height / 2 + 60);
+    ctx.fillText("Recarga la página para reiniciar", pantallaJ.width / 2, pantallaJ.height / 2 + 60);
 }
 
 
@@ -271,7 +271,7 @@ function verificarColisiones() {
         if (distancia < nave.tamanio + radioColision) {
             vidas--;
             if (vidas <= 0) {
-                gameOver();
+                perdisteJAJAJA();
             } else {
                 respawnNave();
             }
@@ -333,25 +333,25 @@ function nuevaOla() {
     }
 }
 
-function inicializarVidas() {
-    const contenedor = document.getElementById("contenedorVidas");
-    contenedor.innerHTML = "";
+function crearLifes(){
+  const viditas= document.getElementById("viditasDiv");
+  viditas.innerHTML = "";
 
-    for (let i = 0; i < 3; i++) {
-        const img = document.createElement("img");
-        img.src = "icons/vida.png";
-        img.id = `vida-${i}`;
-        contenedor.appendChild(img);
+    for (let i=0; i<3; i++) {
+        const corazoncito= document.createElement("img");
+           corazoncito.src= "vista/iconitos/vida.png" ;
+          corazoncito.id =`vida-${i}`;
+          viditas.appendChild(corazoncito);
     }
 }
 
-function actualizarVidasHTML() {
-    for (let i = 0; i < 3; i++) {
-        const img = document.getElementById(`vida-${i}`);
-        if (i < vidas) {
-            img.classList.remove("perdida");
-        } else {
-            img.classList.add("perdida");
+function vidasResponsiveMorir( ){
+    for (let i=0; i<3; i++) {
+        const corazoncito= document.getElementById(`vida-${i}`);
+        if(i<vidas){
+          corazoncito.classList.remove("perdida") ;
+        }else{
+          corazoncito.classList.add("perdida");
         }
     }
 }
@@ -363,6 +363,9 @@ function dibujarAsteroides() {
 
         ctx.beginPath();
         ctx.moveTo(ast.vertices[0].x, ast.vertices[0].y);
+
+        //La siguiente parte del codigo creada con una IA generativa o.o
+        //:D se uso para el diseño que luego feu cambiado por uno personalizado
         for (let i = 1; i < ast.vertices.length; i++) {
             ctx.lineTo(ast.vertices[i].x, ast.vertices[i].y);
         }
@@ -390,12 +393,17 @@ function dibujarNave(x, y, tamanio, angulo) {
     ctx.shadowColor = "#D4AF37";
     ctx.shadowBlur = 15;
 
+    //La siguiente parte del codigo es sacada de IA claude :O
+    //se uso solo para el diseño que al inicio fue solamente
+    //un triangulo luego se le agrego el simbolo de la nave 
+    //con imagen y la linea entre la nave 
     ctx.beginPath();
     ctx.moveTo(0, -tamanio);
     ctx.lineTo(tamanio * 1.2, tamanio);
     ctx.lineTo(0, tamanio * 0.5);
     ctx.lineTo(-tamanio * 1.2, tamanio);
     ctx.closePath();
+
     ctx.fillStyle = nave.color;
     ctx.fill();
     ctx.stroke();
@@ -413,7 +421,7 @@ function dibujarNave(x, y, tamanio, angulo) {
         ctx.shadowBlur = 0;
     }
 
-    if (teclas.w){
+    if (controlesGamerXD.w){
         ctx.beginPath();
         ctx.strokeStyle = "#ffae00";
         ctx.lineWidth = 3;
@@ -425,7 +433,7 @@ function dibujarNave(x, y, tamanio, angulo) {
         ctx.stroke();
     }
 
-    if (teclas.s){
+    if (controlesGamerXD.s){
         ctx.beginPath();
         ctx.strokeStyle = "#ffae00";
         ctx.lineWidth = 2;
@@ -439,7 +447,7 @@ function dibujarNave(x, y, tamanio, angulo) {
     ctx.restore();
 }
 
-inicializarVidas();
+crearLifes();
 
 function juegoEnCurso() {
     if (vidas <= 0) {
@@ -447,7 +455,7 @@ function juegoEnCurso() {
     }
 
     ctx.fillStyle = "#000a27";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, pantallaJ.width, pantallaJ.height);
 
     actualizar();
 
@@ -461,9 +469,9 @@ function juegoEnCurso() {
 
     verificarColisionesBalas();
 
-    actualizarVidasHTML();
+    vidasResponsiveMorir();
 
-    dibujarNave(nave.x, nave.y, nave.tamanio, nave.angulo);
+    dibujarNave(Bombardini.x, Bombardini.y, Bombardini.tamanio, Bombardini.angulo);
 
     dibujarAsteroides();
 

@@ -1,4 +1,4 @@
-const nave = {
+const Bombardini = {
     x: 0,
     y: 0,
     tamanio: 25,

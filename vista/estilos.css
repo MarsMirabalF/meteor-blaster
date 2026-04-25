@@ -16,14 +16,14 @@ body {
     padding: 8px 20px;
 }
 
-#contenedorVidas img {
+#viditasDiv img {
     width: 35px;
     height: 35px;
     transition: opacity 0.3s;
     filter: drop-shadow(0 0 8px #D4AF37)
 }
 
-#contenedorVidas img.perdida {
+#viditasDiv img.perdida {
     filter: grayscale(100%) drop-shadow(0 0 8px #d43737);
     transform: scale(0.9);
 }

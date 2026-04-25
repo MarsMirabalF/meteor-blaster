@@ -3,15 +3,15 @@ function verificarColisiones() {
         return;
     }
     for (const ast of asteroides) {
-        const dx = nave.x - ast.x;
-        const dy = nave.y - ast.y;
+        const dx = Bombardini.x - ast.x;
+        const dy = Bombardini.y - ast.y;
         const distancia = Math.sqrt(dx * dx + dy * dy);
         const radioColision = ast.radio * 0.85;
 
-        if (distancia < nave.tamanio + radioColision) {
+        if (distancia < Bombardini.tamanio + radioColision) {
             vidas--;
             if (vidas <= 0) {
-                gameOver();
+                perdisteJAJAJA();
             } else {
                 respawnNave();
             }

@@ -121,3 +121,8 @@ asi usted ve los cambios de a poco.
 Sobre mi penultimo commit: 
 Me equivoque de nombre deberia decir que fue el que commit que use para refactorizar algunos
 ultimos detalles del MVC.
+
+Se utilizo guia de la IA claude solo para diseño que luego se cambio para los siguientes puntos:
+-dibujo de la nave solo el estilo, la imagen coloeres y el vertice al centro fue mis cambios
+-dibujo de explociones, solo para que me diga como se hace para que se explayen las particulas aunque tambien
+se menciona esa parte en el tutorial, pero yo use ambas ideas.

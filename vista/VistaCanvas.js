@@ -1,10 +1,10 @@
-const canvas = document.getElementById("canvasJuego");
-const ctx = canvas.getContext("2d");
+const pantallaJ = document.getElementById("canvasJuego");
+const ctx = pantallaJ.getContext("2d");
 const simboloNave = new Image();
-simboloNave.src = "vista/icons/acbf.png";
+simboloNave.src = "vista/imagencitas/acbf.png";
 
-canvas.width = 1500;
-canvas.height = 550;
+pantallaJ.width = 1500;
+pantallaJ.height = 550;
 
 function dibujarNave(x, y, tamanio, angulo) {
     ctx.save();
@@ -23,7 +23,7 @@ function dibujarNave(x, y, tamanio, angulo) {
     ctx.lineTo(0, tamanio * 0.5);
     ctx.lineTo(-tamanio * 1.2, tamanio);
     ctx.closePath();
-    ctx.fillStyle = nave.color;
+    ctx.fillStyle = Bombardini.color;
     ctx.fill();
     ctx.stroke();
 
@@ -40,7 +40,7 @@ function dibujarNave(x, y, tamanio, angulo) {
         ctx.shadowBlur = 0;
     }
 
-    if (teclas.w) {
+    if (controlesGamerXD.w) {
         ctx.beginPath();
         ctx.strokeStyle = "#ffae00";
         ctx.lineWidth = 3;
@@ -52,7 +52,7 @@ function dibujarNave(x, y, tamanio, angulo) {
         ctx.stroke();
     }
 
-    if (teclas.s) {
+    if (controlesGamerXD.s) {
         ctx.beginPath();
         ctx.strokeStyle = "#ffae00";
         ctx.lineWidth = 2;
@@ -132,19 +132,19 @@ function actualizarYDibujarExplosiones() {
 
 function dibujarFondo() {
     ctx.fillStyle = "#000a27";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, pantallaJ.width, pantallaJ.height);
 }
 
-function dibujarGameOver() {
+function pantallaDalasxd() {
     ctx.fillStyle = "#000a27";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, pantallaJ.width, pantallaJ.height);
 
     ctx.fillStyle = "#ff4444";
     ctx.font = "bold 64px 'Courier New'";
     ctx.textAlign = "center";
-    ctx.fillText("Perdiste... :(", canvas.width / 2, canvas.height / 2);
+    ctx.fillText("Perdiste... :(", pantallaJ.width / 2, pantallaJ.height / 2);
 
     ctx.fillStyle = "#ffffff";
     ctx.font = "24px 'Courier New'";
-    ctx.fillText("Recarga la página para reiniciar", canvas.width / 2, canvas.height / 2 + 60);
+    ctx.fillText("Recarga la página para reiniciar X _ X", pantallaJ.width / 2, pantallaJ.height / 2 + 60);
 }

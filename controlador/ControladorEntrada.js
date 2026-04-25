@@ -1,24 +1,23 @@
-const teclas = {
-    a: false,
-    d: false,
-    w: false,
-    s: false,
-    " ": false
+const controlesGamerXD = {
+        w: false,
+    a: false, d: false,
+        s: false,
+                " ": false
 };
 
 document.addEventListener("keydown", (e) => {
-    const tecla = e.key.toLowerCase();
-    if (tecla in teclas) {
-        teclas[tecla] = true;
+    const teclitasGaming=e.key.toLowerCase();
+    if(teclitasGaming in controlesGamerXD){
+          controlesGamerXD[teclitasGaming] = true;
     }
-    if (e.key == " ") {
-        e.preventDefault();
+    if(e.key == " ") {
+      e.preventDefault();
     }
 });
 
 document.addEventListener("keyup", (e) => {
-    const tecla = e.key.toLowerCase();
-    if (tecla in teclas) {
-        teclas[tecla] = false;
+    const teclitasGaming =e.key.toLowerCase( );
+    if(teclitasGaming in controlesGamerXD) {
+      controlesGamerXD[teclitasGaming] = false;
     }
 });

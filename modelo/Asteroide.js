@@ -4,11 +4,11 @@ const RADIO_MINIMO_ASTEROIDE = 20;
 let ola = 1;
 
 function crearAsteroide(x, y, radio, velocidadX, velocidadY) {
-    const canvas = document.getElementById("canvasJuego");
+    const pantallaJ = document.getElementById("canvasJuego");
 
     radio = radio || (45 + Math.random() * 30);
-    x = x !== undefined ? x : Math.random() * canvas.width;
-    y = y !== undefined ? y : Math.random() * canvas.height;
+    x = x !== undefined ? x : Math.random() * pantallaJ.width;
+    y = y !== undefined ? y : Math.random() * pantallaJ.height;
 
     velocidadX = velocidadX !== undefined ? velocidadX : (Math.random() - 0.5) * 1.5;
     velocidadY = velocidadY !== undefined ? velocidadY : (Math.random() - 0.5) * 1.5;
