@@ -98,7 +98,7 @@ function piedritasFlotantes( ){
         if (ast.x >  pantallaJ.width + ast.radio) { 
               ast.x =- ast.radio; 
         }
-        
+
         if (ast.x< -ast.radio) { 
              ast.x= pantallaJ.width + ast.radio; 
         }
@@ -133,8 +133,8 @@ function bucleInfinitoDeSufrimiento( ){
     piedritasFlotantes();
     actualizarYDibujarExplosiones();
     balasQueSeFueronANuncaJamas();
-    verificarColisiones();
-    verificarColisionesBalas();
+    vuelaAlto();
+    disparoVSPiedritas();
     vidasResponsiveMorir();
     dibujarNave(Bombardini.x, Bombardini.y, Bombardini.tamanio, Bombardini.angulo);
     dibujarAsteroides();

@@ -112,11 +112,10 @@ https://www.youtube.com/watch?v=9jxkWxCHuq0&list=PL4cUxeGkcC9iO8ai6LU0s6aHAaWP4R
 
 Comentarios sobre el proyecto:
 
-Sobre el archivo: "Verificar.js"
+Sobre cada archivo archivo:
 
-Puede ver que ese archivo mantiene los cambios constantes a lo largo del tiempo lo mantuve
-para que usted sea consiente que no se usaron proyectos de terceros o generacion de codigo,
-asi usted ve los cambios de a poco.
+Puede ver que cada archivo mantiene los cambios constantes a lo largo del tiempo lo mantuve para que usted sea consiente que no se usaron proyectos de terceros o generacion de codigo,
+asi usted ve los cambios de a poco incluso a travez de los commits.
 
 Sobre mi penultimo commit: 
 Me equivoque de nombre deberia decir que fue el que commit que use para refactorizar algunos

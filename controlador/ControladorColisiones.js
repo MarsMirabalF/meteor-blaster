@@ -1,33 +1,33 @@
-function verificarColisiones() {
-    if (invencible) {
+function vuelaAlto(){
+    if (invencible){
         return;
     }
-    for (const ast of asteroides) {
-        const dx = Bombardini.x - ast.x;
-        const dy = Bombardini.y - ast.y;
-        const distancia = Math.sqrt(dx * dx + dy * dy);
-        const radioColision = ast.radio * 0.85;
+    for(const ast of asteroides) {
+        const dx =Bombardini.x-ast.x;
+        const dy =Bombardini.y-ast.y ;
+          const distancia = Math.sqrt(dx*dx + dy*dy);
+          const radioColision = ast.radio* 0.85;
 
-        if (distancia < Bombardini.tamanio + radioColision) {
+        if (distancia< Bombardini.tamanio +radioColision){
             vidas--;
-            if (vidas <= 0) {
-                perdisteJAJAJA();
-            } else {
+            if (vidas <= 0){
+                perdisteJAJAJA() ;
+            }else{
                 respawnNave();
             }
-            break;
+            break ;
         }
     }
 }
 
-function verificarColisionesBalas() {
-    for (let i = balas.length - 1; i >= 0; i--) {
-        for (let j= asteroides.length - 1; j >= 0; j--) {
-             const dx= balas[i].x - asteroides[j].x;
-              const dy = balas[i].y - asteroides[j].y;
+function disparoVSPiedritas(){
+    for (let i=balas.length -1 ; i>=0; i--){
+        for (let j=asteroides.length-1 ; j>=0 ; j--) {
+             const dx= balas[i].x-asteroides[j].x;
+              const dy = balas[i].y-asteroides[j].y;
                const distancia = Math.sqrt(dx * dx + dy * dy);
 
-            if (distancia < asteroides[j].radio) {
+            if (distancia<asteroides[j].radio) {
                 const ast = asteroides[j];
 
                 if (ast.radio>RADIO_MINIMO_ASTEROIDE * 2) {
@@ -38,22 +38,22 @@ function verificarColisionesBalas() {
 
                     asteroides.push(crearAsteroide(
                         ast.x, ast.y, radioFragmento,
-                        Math.cos(angulo1) * speed,
-                        Math.sin(angulo1) * speed
+                         Math.cos(angulo1) * speed,
+                        Math.sin(angulo1) *speed
                     ));
                     asteroides.push(crearAsteroide(
-                        ast.x, ast.y, radioFragmento,
-                        Math.cos(angulo2) * speed,
-                        Math.sin(angulo2) * speed
+                          ast.x, ast.y, radioFragmento,
+                         Math.cos(angulo2) * speed,
+                          Math.sin(angulo2)*speed
                     ));
                 }
 
-                crearExplosion(ast.x, ast.y);
-                asteroides.splice(j, 1);
-                balas.splice(i, 1);
+                 crearExplosion(ast.x , ast.y);
+                 asteroides.splice(j , 1);
+                 balas.splice(i , 1);
 
-                if (asteroides.length === 0) {
-                    nuevaOla();
+                if(asteroides.length === 0){
+                    nuevaOla() ;
                 }
                 break;
             }
