@@ -4,37 +4,50 @@ let tiempoInvencible = 0;
 const efectoEstrella = 180;
 
 function renacerBombardini( ) {
+
      Bombardini.x= pantallaJ.width /2;
+
      Bombardini.y=pantallaJ.height/2 ;
+
       Bombardini.velocidadX = 0;
+
       Bombardini.velocidadY=0;
+
       Bombardini.angulo=0;
         invencible=true;
+
         tiempoInvencible =efectoEstrella ;
 }
 
 function perdisteJAJAJA(){
     vidas=0;
+
       pantallaDalasxd();
 }
 
 function quePasoBombardini(){
+  
     if (controlesGamerXD.a){
+
       Bombardini.angulo -= 0.05;
     }
     if (controlesGamerXD.d){
       Bombardini.angulo += 0.05;
     }
+
     if (controlesGamerXD.w) {
       Bombardini.velocidadX += Math.sin(Bombardini.angulo)* 0.2;
+
        Bombardini.velocidadY-= Math.cos(Bombardini.angulo) *0.2;
     }
     if (controlesGamerXD.s){
       Bombardini.velocidadX-=Math.sin(Bombardini.angulo)* 0.2;
+
       Bombardini.velocidadY+=Math.cos(Bombardini.angulo)* 0.2;
     }
 
       Bombardini.x += Bombardini.velocidadX;
+
     Bombardini.y+= Bombardini.velocidadY;
 
        Bombardini.velocidadX *= 0.98;
@@ -44,18 +57,25 @@ function quePasoBombardini(){
          Bombardini.x =0; 
         }
     if (Bombardini.x <0) {
+
          Bombardini.x = pantallaJ.width; 
         }
     if (Bombardini.y>pantallaJ.height) {
+
          Bombardini.y = 0 ;  
         }
     if (Bombardini.y<0) {
+
          Bombardini.y= pantallaJ.height; }
 
     if (invencible) {
+
       tiempoInvencible--;
+
         if (tiempoInvencible<= 0) {
+
           invencible= false;
+
         }
     }
 
@@ -65,10 +85,15 @@ function quePasoBombardini(){
 
     if(controlesGamerXD[" "]&&cooldownDisparo === 0){
         balas.push({
+
         x: Bombardini.x +Math.sin(Bombardini.angulo)*Bombardini.tamanio,
+
            y: Bombardini.y- Math.cos(Bombardini.angulo)*Bombardini.tamanio,
+
           velocidadX: Math.sin(Bombardini.angulo) *VELOCIDAD_BALA + Bombardini.velocidadX,
+
             velocidadY: -Math.cos(Bombardini.angulo) *VELOCIDAD_BALA + Bombardini.velocidadY,
+
             vida: VIDA_BALA
         });
           cooldownDisparo = COOLDOWN_DISPARO;
@@ -77,21 +102,30 @@ function quePasoBombardini(){
 
 function balasQueSeFueronANuncaJamas() {
     for (let i=balas.length-1; i>=0; i--) {
+
         balas[i].x+=balas[i].velocidadX;
-        balas[i].y +=balas[i].velocidadY;
+
+          balas[i].y +=balas[i].velocidadY ;
+
         balas[i].vida--;
         if (
+
           balas[i].vida<=0||
            balas[i].x < 0|| balas[i].x > pantallaJ.width ||
             balas[i].y < 0||balas[i].y > pantallaJ.height
+
         ) {
+
              balas.splice(i, 1);
+
         }
     }
 }
 
 function piedritasFlotantes( ){
+
     for (const ast of asteroides){
+
         ast.x+=ast.velocidadX;
         ast.y+= ast.velocidadY ;
 
@@ -100,12 +134,15 @@ function piedritasFlotantes( ){
         }
 
         if (ast.x< -ast.radio) { 
+
              ast.x= pantallaJ.width + ast.radio; 
         }
         if (ast.y >  pantallaJ.height + ast.radio) { 
+
               ast.y = -ast.radio; 
         }
         if (ast.y <  -ast.radio) { 
+
              ast.y =pantallaJ.height + ast.radio; 
         }
     }
@@ -116,6 +153,7 @@ function daleJuguemos( ){
       Bombardini.y= pantallaJ.height/ 2;
 
     for (let i=0; i<CANTIDAD_ASTEROIDES; i++) {
+
     asteroides.push(crearAsteroide());
     }
 
@@ -124,6 +162,7 @@ function daleJuguemos( ){
 }
 
 function bucleInfinitoDeSufrimiento( ){
+
     if (vidas <= 0) {
         return;
     }
