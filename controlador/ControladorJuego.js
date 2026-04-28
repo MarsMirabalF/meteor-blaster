@@ -3,7 +3,7 @@ let invencible = false;
 let tiempoInvencible = 0;
 const efectoEstrella = 180;
 
-function respawnNave( ) {
+function renacerBombardini( ) {
      Bombardini.x= pantallaJ.width /2;
      Bombardini.y=pantallaJ.height/2 ;
       Bombardini.velocidadX = 0;
