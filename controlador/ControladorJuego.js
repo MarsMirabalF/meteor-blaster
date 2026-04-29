@@ -57,7 +57,6 @@ function quePasoBombardini(){
          Bombardini.x =0; 
         }
     if (Bombardini.x <0) {
-
          Bombardini.x = pantallaJ.width; 
         }
     if (Bombardini.y>pantallaJ.height) {
@@ -154,7 +153,7 @@ function daleJuguemos( ){
 
     for (let i=0; i<CANTIDAD_ASTEROIDES; i++) {
 
-    asteroides.push(crearAsteroide());
+    asteroides.push(nacerPiedrita());
     }
 
     crearLifes();
@@ -167,17 +166,17 @@ function bucleInfinitoDeSufrimiento( ){
         return;
     }
 
-    dibujarFondo();
+    fondoEspacio();
     quePasoBombardini();
     piedritasFlotantes();
-    actualizarYDibujarExplosiones();
+    pintaditaExplosiones();
     balasQueSeFueronANuncaJamas();
     vuelaAlto();
     disparoVSPiedritas();
     vidasResponsiveMorir();
-    dibujarNave(Bombardini.x, Bombardini.y, Bombardini.tamanio, Bombardini.angulo);
-    dibujarAsteroides();
-    dibujarBalas();
+    pintaditaBombardini(Bombardini.x, Bombardini.y, Bombardini.tamanio, Bombardini.angulo);
+    pintaditaPiedritas();
+    pintaditaBalas();
 
     requestAnimationFrame(bucleInfinitoDeSufrimiento);
 }

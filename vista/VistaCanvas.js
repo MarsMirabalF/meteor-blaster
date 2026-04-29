@@ -1,35 +1,54 @@
 const pantallaJ = document.getElementById("canvasJuego");
+
 const ctx = pantallaJ.getContext("2d");
+
 const simboloNave = new Image();
+
 simboloNave.src = "vista/imagencitas/acbf.png";
 
 pantallaJ.width = 1500;
-pantallaJ.height = 550;
+pantallaJ.height = 550 ;
 
-function dibujarNave(x, y, tamanio, angulo) {
-    ctx.save();
+function pintaditaBombardini(x, y, tamanio, angulo){
+
+     ctx.save();
     ctx.translate(x, y);
-    ctx.rotate(angulo);
+
+     ctx.rotate(angulo);
 
     ctx.strokeStyle = "#D4AF37";
-    ctx.lineWidth = 2;
+     ctx.lineWidth = 2;
 
-    ctx.shadowColor = "#D4AF37";
-    ctx.shadowBlur = 15;
+     ctx.shadowColor = "#D4AF37" ;
+
+
+     ctx.shadowBlur = 15;
 
     ctx.beginPath();
-    ctx.moveTo(0, -tamanio);
-    ctx.lineTo(tamanio * 1.2, tamanio);
-    ctx.lineTo(0, tamanio * 0.5);
-    ctx.lineTo(-tamanio * 1.2, tamanio);
-    ctx.closePath();
-    ctx.fillStyle = Bombardini.color;
-    ctx.fill();
-    ctx.stroke();
+      ctx.moveTo(0, -tamanio) ;
 
-    if (simboloNave.complete) {
-        ctx.shadowColor = "#D4AF37";
-        ctx.shadowBlur = 100;
+       ctx.lineTo(tamanio*1.2,tamanio);
+
+  ctx.lineTo(0, tamanio* 0.5);
+
+
+  ctx.lineTo(-tamanio *1.2,tamanio);
+    ctx.closePath();
+
+     ctx.fillStyle =Bombardini.color;
+   ctx.fill();
+
+
+     ctx.stroke();
+
+    if (simboloNave.complete){
+
+           ctx.shadowColor = "#D4AF37";
+
+         ctx.shadowBlur = 100;
+
+        //los parametros son solo la posicion de la nave bombardini 
+        // y el tamaño de la imagen que se va a dibujar
         ctx.drawImage(
             simboloNave,
             -tamanio * 0.5,
@@ -37,74 +56,88 @@ function dibujarNave(x, y, tamanio, angulo) {
             tamanio * 1.0,
             tamanio * 1.0
         );
-        ctx.shadowBlur = 0;
+
+         ctx.shadowBlur = 0 ;
+
     }
 
     if (controlesGamerXD.w) {
-        ctx.beginPath();
-        ctx.strokeStyle = "#ffae00";
-        ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.strokeStyle = "#ffae00";
+      ctx.lineWidth = 3;
 
-        ctx.moveTo(-tamanio * 0.3, tamanio);
-        ctx.lineTo(0, tamanio + Math.random() * 20 + 10);
-        ctx.lineTo(tamanio * 0.3, tamanio);
+      ctx.moveTo(-tamanio * 0.3, tamanio);
+      ctx.lineTo(0, tamanio + Math.random() * 20 + 10);
+      ctx.lineTo(tamanio * 0.3, tamanio);
 
-        ctx.stroke();
+      ctx.stroke();
     }
 
-    if (controlesGamerXD.s) {
-        ctx.beginPath();
-        ctx.strokeStyle = "#ffae00";
-        ctx.lineWidth = 2;
+    if (controlesGamerXD.s){
+         
+        ctx.beginPath() ;
+         ctx.strokeStyle = "#ffae00" ;
+         ctx.lineWidth=2;
 
-        ctx.moveTo(-tamanio * 0.3, -tamanio * 0.5);
-        ctx.lineTo(0, -tamanio - (Math.random() * 10 + 5));
-        ctx.lineTo(tamanio * 0.3, -tamanio * 0.5);
+         ctx.moveTo(-tamanio*0.3, -tamanio*0.5);
+         ctx.lineTo(0, -tamanio -(Math.random()*10+5));
+         ctx.lineTo(tamanio*0.3,-tamanio*0.5);
 
-        ctx.stroke();
+         ctx.stroke ( ) ;
     }
     ctx.restore();
 }
 
-function dibujarAsteroides() {
-    for (const ast of asteroides) {
-        ctx.save();
-        ctx.translate(ast.x, ast.y);
+function pintaditaPiedritas( ){
+    for (const ast of asteroides){
+         
+          ctx.save( ) ;
+          ctx.translate(ast.x, ast.y);
 
-        ctx.beginPath();
-        ctx.moveTo(ast.vertices[0].x, ast.vertices[0].y);
-        for (let i = 1; i < ast.vertices.length; i++) {
+         ctx.beginPath();
+           ctx.moveTo(ast.vertices[0].x, ast.vertices[0].y);
+
+
+        for (let i = 1; i < ast.vertices.length; i++){
+
             ctx.lineTo(ast.vertices[i].x, ast.vertices[i].y);
         }
-        ctx.closePath();
+           ctx.closePath();
 
-        ctx.fillStyle = "#a0a0c0";
-        ctx.fill();
+         ctx.fillStyle = "#a0a0c0";
+         ctx.fill( );
 
-        ctx.strokeStyle = "#a0a0c0";
-        ctx.lineWidth = 2;
-        ctx.stroke();
+          ctx.strokeStyle = "#a0a0c0";
+          ctx.lineWidth = 2;
 
-        ctx.restore();
+         ctx.stroke( ) ;
+
+         ctx.restore( );
     }
 }
 
-function dibujarBalas() {
-    for (const bala of balas) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(bala.x, bala.y, 7, 0, Math.PI * 2);
-        ctx.fillStyle = "#00d5ff";
-        ctx.shadowColor = "#ffffff";
-        ctx.shadowBlur = 30;
-        ctx.fill();
-        ctx.restore();
+function pintaditaBalas(){
+
+    for (const bala of balas){
+
+          ctx.save();
+           ctx.beginPath();
+            ctx.arc(bala.x, bala.y, 7, 0, Math.PI * 2);
+             ctx.fillStyle = "#00d5ff";
+              ctx.shadowColor = "#ffffff";
+               ctx.shadowBlur = 30;
+                ctx.fill();
+                 ctx.restore();
+
     }
 }
 
-function actualizarYDibujarExplosiones() {
-    for (let i = explosiones.length - 1; i >= 0; i--) {
-        const exp = explosiones[i];
+function pintaditaExplosiones(){
+
+    for(let i=explosiones.length-1; i>=0; i--) {
+
+        const exp = explosiones[ i ] ;
+
         let vivas = false;
 
         for (const p of exp.particulas) {
@@ -113,38 +146,42 @@ function actualizarYDibujarExplosiones() {
             p.vida -= 0.04;
 
             if (p.vida > 0) {
-                vivas = true;
-                ctx.save();
-                ctx.globalAlpha = p.vida;
-                ctx.fillStyle = "#ffae00";
-                ctx.shadowColor = "#ff0000";
-                ctx.shadowBlur = 100;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
+                vivas = true ;
+                 ctx.save( ) ;
+                  ctx.globalAlpha = p.vida ; 
+                   ctx.fillStyle = "#ffae00" ;
+                    ctx.shadowColor = "#ff0000" ;
+                     ctx.shadowBlur = 100 ;
+                      ctx.beginPath( );
+                       ctx.arc(p.x, p.y, 10, 0, Math.PI * 2) ;
+                        ctx.fill( ) ;
+                         ctx.restore( ) ;
             }
         }
 
-        if (!vivas) explosiones.splice(i, 1);
+        if (!vivas){
+            explosiones.splice(i, 1);
+        }
     }
 }
 
-function dibujarFondo() {
+function fondoEspacio(){
+    //solo es un fondo azul oscuro no pude hacer algo elaborado xd por tiempo
     ctx.fillStyle = "#000a27";
-    ctx.fillRect(0, 0, pantallaJ.width, pantallaJ.height);
-}
+    ctx.fillRect(0  , 0  , pantallaJ.width   ,    pantallaJ.height);
+} 
 
 function pantallaDalasxd() {
+
     ctx.fillStyle = "#000a27";
-    ctx.fillRect(0, 0, pantallaJ.width, pantallaJ.height);
+     ctx.fillRect(0, 0, pantallaJ.width,pantallaJ.height);
 
     ctx.fillStyle = "#ff4444";
-    ctx.font = "bold 64px 'Courier New'";
-    ctx.textAlign = "center";
-    ctx.fillText("Perdiste... :(", pantallaJ.width / 2, pantallaJ.height / 2);
+       ctx.font = "bold 64px 'Courier New'";
+        ctx.textAlign = "center";
+         ctx.fillText("Perdiste... :(",pantallaJ.width/2,pantallaJ.height/2);
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "24px 'Courier New'";
-    ctx.fillText("Recarga la página para reiniciar X _ X", pantallaJ.width / 2, pantallaJ.height / 2 + 60);
+      ctx.font = "24px 'Courier New'";
+       ctx.fillText("Recarga la página para reiniciar X _ X"  ,  pantallaJ.width/2  , pantallaJ.height/2+60 ) ;
 }

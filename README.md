@@ -125,3 +125,4 @@ Se utilizo guia de la IA claude solo para diseño que luego se cambio para los s
 -dibujo de la nave solo el estilo, la imagen coloeres y el vertice al centro fue mis cambios
 -dibujo de explociones, solo para que me diga como se hace para que se explayen las particulas aunque tambien
 se menciona esa parte en el tutorial, pero yo use ambas ideas.
+-codigo de la formula matematica presente en la linea 18 y 19. de la clase asteroide en modelo.
