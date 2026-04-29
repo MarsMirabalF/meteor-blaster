@@ -1,7 +1,38 @@
-let vidas = 3;
-let invencible = false;
-let tiempoInvencible = 0;
-const efectoEstrella = 180;
+const Bombardini = {
+    x: 0,
+    y: 0,
+    tamanio: 25,
+    color: "#000000",
+    angulo: 0,
+    velocidadX: 0,
+    velocidadY: 0
+};
+
+function vuelaAlto(){
+    if (invencible){
+        return;
+    }
+    for(const ast of asteroides) {
+
+        const dx =Bombardini.x-ast.x;
+        const dy =Bombardini.y-ast.y ;
+
+          const distancia = Math.sqrt(dx*dx + dy*dy);
+          const radioColision = ast.radio* 0.85;
+
+        if (distancia< Bombardini.tamanio +radioColision){
+            vidas--;
+            if (vidas <= 0){
+
+                perdisteJAJAJA() ;
+            }else{
+
+                renacerBombardini();
+            }
+            break ;
+        }
+    }
+}
 
 function renacerBombardini( ) {
 
@@ -19,11 +50,6 @@ function renacerBombardini( ) {
         tiempoInvencible =efectoEstrella ;
 }
 
-function perdisteJAJAJA(){
-    vidas=0;
-
-      pantallaDalasxd();
-}
 
 function quePasoBombardini(){
   
@@ -98,87 +124,3 @@ function quePasoBombardini(){
           cooldownDisparo = COOLDOWN_DISPARO;
     }
 }
-
-function balasQueSeFueronANuncaJamas() {
-    for (let i=balas.length-1; i>=0; i--) {
-
-        balas[i].x+=balas[i].velocidadX;
-
-          balas[i].y +=balas[i].velocidadY ;
-
-        balas[i].vida--;
-        if (
-
-          balas[i].vida<=0||
-           balas[i].x < 0|| balas[i].x > pantallaJ.width ||
-            balas[i].y < 0||balas[i].y > pantallaJ.height
-
-        ) {
-
-             balas.splice(i, 1);
-
-        }
-    }
-}
-
-function piedritasFlotantes( ){
-
-    for (const ast of asteroides){
-
-        ast.x+=ast.velocidadX;
-        ast.y+= ast.velocidadY ;
-
-        if (ast.x >  pantallaJ.width + ast.radio) { 
-              ast.x =- ast.radio; 
-        }
-
-        if (ast.x< -ast.radio) { 
-
-             ast.x= pantallaJ.width + ast.radio; 
-        }
-        if (ast.y >  pantallaJ.height + ast.radio) { 
-
-              ast.y = -ast.radio; 
-        }
-        if (ast.y <  -ast.radio) { 
-
-             ast.y =pantallaJ.height + ast.radio; 
-        }
-    }
-}
-
-function daleJuguemos( ){
-     Bombardini.x = pantallaJ.width /2;
-      Bombardini.y= pantallaJ.height/ 2;
-
-    for (let i=0; i<CANTIDAD_ASTEROIDES; i++) {
-
-    asteroides.push(nacerPiedrita());
-    }
-
-    crearLifes();
-      bucleInfinitoDeSufrimiento();
-}
-
-function bucleInfinitoDeSufrimiento( ){
-
-    if (vidas <= 0) {
-        return;
-    }
-
-    fondoEspacio();
-    quePasoBombardini();
-    piedritasFlotantes();
-    pintaditaExplosiones();
-    balasQueSeFueronANuncaJamas();
-    vuelaAlto();
-    disparoVSPiedritas();
-    vidasResponsiveMorir();
-    pintaditaBombardini(Bombardini.x, Bombardini.y, Bombardini.tamanio, Bombardini.angulo);
-    pintaditaPiedritas();
-    pintaditaBalas();
-
-    requestAnimationFrame(bucleInfinitoDeSufrimiento);
-}
-
-daleJuguemos();

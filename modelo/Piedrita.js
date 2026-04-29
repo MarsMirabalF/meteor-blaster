@@ -8,7 +8,7 @@ function nacerPiedrita(x, y, radio, velocidadX, velocidadY){
 
      const pantallaJ = document.getElementById("canvasJuego") ;
 
-      radio = radio || (45 + Math.random() * 30);
+      radio =radio||(45+Math.random( )*30);
       
        x = x !== undefined ? x : Math.random() * pantallaJ.width;
        y = y !== undefined ? y : Math.random() * pantallaJ.height;
@@ -18,9 +18,9 @@ function nacerPiedrita(x, y, radio, velocidadX, velocidadY){
   velocidadX = velocidadX !== undefined ? velocidadX : (Math.random() - 0.5) * 1.5;
   velocidadY = velocidadY !== undefined ? velocidadY : (Math.random() - 0.5) * 1.5;
 
- const vertices = [];
+ const vertices = [ ];
 
- const numVertices = 8 + Math.floor(Math.random() * 5) ;
+ const numVertices =8 +Math.floor(Math.random( ) *5) ;
 
     for (let i = 0; i < numVertices; i++){
           const angulo = (i / numVertices) * Math.PI * 2;
@@ -38,13 +38,28 @@ function nacerPiedrita(x, y, radio, velocidadX, velocidadY){
     return { x, y, radio, velocidadX, velocidadY, vertices };
 }
 
-function invocarSiguienteRondaDeDolor( ){
-      ola++;
+function piedritasFlotantes( ){
 
-      const cantidad = CANTIDAD_ASTEROIDES + ola;
+    for (const ast of asteroides){
 
-    for (let i = 0; i < cantidad; i++){
+        ast.x+=ast.velocidadX;
+        ast.y+= ast.velocidadY ;
 
-      asteroides.push(nacerPiedrita());
+        if (ast.x >  pantallaJ.width + ast.radio) { 
+              ast.x =- ast.radio; 
+        }
+
+        if (ast.x< -ast.radio) { 
+
+             ast.x= pantallaJ.width + ast.radio; 
+        }
+        if (ast.y >  pantallaJ.height + ast.radio) { 
+
+              ast.y = -ast.radio; 
+        }
+        if (ast.y <  -ast.radio) { 
+
+             ast.y =pantallaJ.height + ast.radio; 
+        }
     }
 }

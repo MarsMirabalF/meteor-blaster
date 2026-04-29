@@ -113,7 +113,6 @@ https://www.youtube.com/watch?v=9jxkWxCHuq0&list=PL4cUxeGkcC9iO8ai6LU0s6aHAaWP4R
 Comentarios sobre el proyecto:
 
 Sobre cada archivo archivo:
-
 Puede ver que cada archivo mantiene los cambios constantes a lo largo del tiempo lo mantuve para que usted sea consiente que no se usaron proyectos de terceros o generacion de codigo,
 asi usted ve los cambios de a poco incluso a travez de los commits.
 
@@ -126,3 +125,7 @@ Se utilizo guia de la IA claude solo para diseño que luego se cambio para los s
 -dibujo de explociones, solo para que me diga como se hace para que se explayen las particulas aunque tambien
 se menciona esa parte en el tutorial, pero yo use ambas ideas.
 -codigo de la formula matematica presente en la linea 18 y 19. de la clase asteroide en modelo.
+
+Sobre los tutoriales:
+-se usaron las funciones completamente del tutorial puesto que considere conceptos avanzados para mi sin embaro en el tutorial explican el funcionamiento de cada funcion asi entendi el funcionamiento de las coliciones que se uso en las funciones quePasoBombardini() y disparoVSPiedritas().
+-en general la mayor parte del proyecto fue hecho con los distintos tutoriales y las playlist esto debido a que dichos videos de youtube te enseñan el funcionamiento de codigo a la vez de la implementacion explicando como para principiantes esto simplifica mucho el hecho de buscar parte por parte la informacion, sin embargo yo tambien me di la molestia de revisar la API de canvas investigando diseño por mi cuenta y como ve cada parte de la API de canvas que se uso de su sitio web lo puse aqui en este README.
